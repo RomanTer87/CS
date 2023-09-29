@@ -14,17 +14,11 @@ namespace Arrays
 			Console.Write("Введите размер массива: ");
 			int n = Convert.ToInt32(Console.ReadLine());
 			int[] arr = new int[n];
-			Random rand = new Random(0);    //Создаем объект класса 'Random' для того чтобы генерировать случайные числа
-			for (int i = 0; i < arr.Length; i++)
-			{
-				arr[i] = rand.Next(100);
-			}
-
-			for (int i = 0; i < n; i++)
-			{
-				Console.Write(arr[i] + "\t");
-			}
-			Console.WriteLine();
+			FillRand(arr);
+			Print(arr);
+			Console.WriteLine($"Сумма элементов массива: { Sum(arr)}");
+			Console.WriteLine(delimiter);
+			
 
 			foreach (int i in arr)
 			{
@@ -44,7 +38,7 @@ namespace Arrays
 			{
 				for (int j = 0; j < cols; j++)
 				{
-					i_arr_2[i, j] = rand.Next(100);
+					//i_arr_2[i, j] = rand.Next(100);
 				}
 			}
 			for (int i = 0; i < i_arr_2.GetLength(0); i++)
@@ -93,6 +87,32 @@ namespace Arrays
 				{1024,2048,3072,4096 }
 			}
 			};
+		}
+		public static void FillRand(int[] arr)
+		{
+			Random rand = new Random(0);    //Создаем объект класса 'Random' для того чтобы генерировать случайные числа
+			for (int i = 0; i < arr.Length; i++)
+			{
+				arr[i] = rand.Next(100);
+			}
+		}
+
+		public static void Print(int[] arr)
+		{
+			for (int i = 0; i < arr.Length; i++)
+			{
+				Console.Write(arr[i] + "\t");
+			}
+			Console.WriteLine();
+		}
+		public static int Sum(int[] arr)
+		{
+		int sum = 0;
+			for(int i=0; i<arr.Length; i++) 
+			{
+			sum+= arr[i];
+			}
+			return sum;
 		}
 	}
 }
