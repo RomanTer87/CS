@@ -16,15 +16,27 @@ namespace Arrays
 			int[] arr = new int[n];
 			FillRand(arr);
 			Print(arr);
-			Console.WriteLine($"Сумма элементов массива: { Sum(arr)}");
-			Console.WriteLine(delimiter);
 			
-
 			foreach (int i in arr)
 			{
 				Console.Write(i + "\t");
 			}
 			Console.WriteLine();
+			Console.WriteLine(delimiter);
+
+			Console.WriteLine($"Сумма элементов массива: { arr.Sum()}");
+			Console.WriteLine($"Среднее арифметическое элементов массива: { arr.Average()}");
+			Console.WriteLine($"Наименьший элемент в массиве: {arr.Min()}");
+			Console.WriteLine($"Наибольший элемент в массиве: {arr.Max()}");
+			Console.WriteLine(delimiter);
+
+			double[] d_arr = new double[n];
+			FillRand(d_arr);
+			Print(d_arr);
+			Console.WriteLine($"Сумма элементов массива: {d_arr.Sum()}");
+			Console.WriteLine($"Среднее арифметическое элементов массива: {d_arr.Average()}");
+			Console.WriteLine($"Наименьший элемент в массиве: {d_arr.Min()}");
+			Console.WriteLine($"Наибольший элемент в массиве: {d_arr.Max()}");
 			Console.WriteLine(delimiter);
 
 			//////////////////////////////////////////////////////////////////////////
@@ -34,21 +46,9 @@ namespace Arrays
 			Console.WriteLine("Введите количество элементов строки: ");
 			int cols = Convert.ToInt32(Console.ReadLine());
 			int[,] i_arr_2 = new int[rows, cols];
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < cols; j++)
-				{
-					//i_arr_2[i, j] = rand.Next(100);
-				}
-			}
-			for (int i = 0; i < i_arr_2.GetLength(0); i++)
-			{
-				for (int j = 0; j < i_arr_2.GetLength(1); j++)
-				{
-					Console.Write(i_arr_2[i, j] + "\t");
-				}
-				Console.WriteLine();
-			}
+			FillRand(i_arr_2);
+			Print(i_arr_2);
+			
 			Console.WriteLine(i_arr_2.GetType());
 			Console.WriteLine(delimiter);
 
@@ -57,6 +57,10 @@ namespace Arrays
 				Console.Write(i + "\t");
 			}
 			Console.WriteLine();
+			Console.WriteLine($"Сумма элементов массива: {i_arr_2.Cast<int>().Sum()}");
+			Console.WriteLine($"Среднее арифметическое элементов массива: {i_arr_2.Cast<int>().Average()}");
+			Console.WriteLine($"Наименьший элемент в массиве: {i_arr_2.Cast<int>().Min()}");
+			Console.WriteLine($"Наибольший элемент в массиве: {i_arr_2.Cast<int>().Max()}");
 			Console.WriteLine(delimiter);
 
 			////////////////////////////////////////////////////////////////////////////
@@ -93,11 +97,31 @@ namespace Arrays
 			Random rand = new Random(0);    //Создаем объект класса 'Random' для того чтобы генерировать случайные числа
 			for (int i = 0; i < arr.Length; i++)
 			{
-				arr[i] = rand.Next(100);
+				arr[i] = rand.Next(100,200);
 			}
 		}
 
-		public static void Print(int[] arr)
+		public static void FillRand(double[] arr)
+		{
+			Random rand = new Random(0);    //Создаем объект класса 'Random' для того чтобы генерировать случайные числа
+			for (int i = 0; i < arr.Length; i++)
+			{
+				arr[i] = (double)rand.Next(100,200)/10;
+			}
+		}
+		public static void FillRand(int[,]arr)
+		{
+			Random rand = new Random(0);
+			for (int i = 0; i < arr.GetLength(0); i++)
+			{
+				for (int j = 0; j < arr.GetLength(1); j++)
+				{
+					arr[i, j] = rand.Next(100);
+				}
+			}
+		}
+
+		public static void Print<T>(T[] arr)
 		{
 			for (int i = 0; i < arr.Length; i++)
 			{
@@ -113,6 +137,36 @@ namespace Arrays
 			sum+= arr[i];
 			}
 			return sum;
+		}
+
+		public static double Avg(int[] arr)
+		{
+			return (double)Sum(arr)/arr.Length;
+		}
+
+		public static double MinValueIn(int[] arr)
+		{
+			double min = arr[0];
+			for(int i=0; i<arr.Length;i++) if (arr[i] < min) min = arr[i];
+			return min;
+		}
+
+		public static double MaxValueIn(int[] arr)
+		{
+			double max = arr[0];
+			for (int i = 0; i < arr.Length; i++) if (arr[i] > max) max = arr[i];
+			return max;
+		}
+		public static void Print<T>(T[,]arr)
+		{
+			for (int i = 0; i < arr.GetLength(0); i++)
+			{
+				for (int j = 0; j < arr.GetLength(1); j++)
+				{
+					Console.Write(arr[i, j] + "\t");
+				}
+				Console.WriteLine();
+			}
 		}
 	}
 }

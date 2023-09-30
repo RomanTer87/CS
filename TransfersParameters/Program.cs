@@ -19,8 +19,8 @@ namespace TransfersParameters
 		}
 		static void Input(out int a,out int b)
 		{
-			Console.Write("введите первое число"); a = Convert.ToInt32(Console.ReadLine());
-			Console.Write("введите второе число"); b = Convert.ToInt32(Console.ReadLine());
+			Console.Write("введите первое число:\t"); a = Convert.ToInt32(Console.ReadLine());
+			Console.Write("введите второе число:\t"); b = Convert.ToInt32(Console.ReadLine());
 
 		}
 	static void Exchange(ref int a, ref int b)
