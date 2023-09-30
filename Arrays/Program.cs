@@ -72,14 +72,13 @@ namespace Arrays
 				new int[]{144,233,377,510},
 				arr
 			};
-			for (int i = 0; i < jagged_arr.Length; i++)
-			{
-				for (int j = 0; j < jagged_arr[i].Length; j++)
-				{
-					Console.Write(jagged_arr[i][j] + "\t");
-				}
-				Console.WriteLine();
-			}
+			Print(jagged_arr);
+			Console.WriteLine();
+			Console.WriteLine($"Сумма элементов массива: {Sum(jagged_arr)}");
+			Console.WriteLine($"Количество элементов массива: {Count(jagged_arr)}");
+			
+			Console.WriteLine(delimiter);
+
 			Console.WriteLine(delimiter);
 
 			int[][,] jagged_arr_2 = new int[][,]
@@ -120,6 +119,8 @@ namespace Arrays
 				}
 			}
 		}
+	
+
 
 		public static void Print<T>(T[] arr)
 		{
@@ -167,6 +168,35 @@ namespace Arrays
 				}
 				Console.WriteLine();
 			}
+		}
+		public static void Print<T>(T[][] arr)
+		{
+			for (int i = 0; i < arr.Length; i++)
+			{
+				for (int j = 0; j < arr[i].Length; j++)
+				{
+					Console.Write(arr[i][j] + "\t");
+				}
+				Console.WriteLine();
+			}
+		}
+		public static int Sum(int[][] arr)
+		{
+			int sum = 0;
+			foreach (int[] i in arr)
+			{
+				sum+= i.Sum();
+			}
+			return sum;
+		}
+		public static int Count(int[][]arr)
+		{
+			int count = 0;
+			foreach (int[] i in arr) 
+			{
+				count += i.Length;
+			}
+			return count;
 		}
 	}
 }
