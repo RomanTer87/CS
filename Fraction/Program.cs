@@ -41,6 +41,9 @@ namespace Fraction
 			Fraction C = A * B;
 			Console.WriteLine($"{A} * {B} = {C}");
 			Console.WriteLine($"{A} / {B} = {A/B}");
+
+			Fraction D = new Fraction(2.75);
+			Console.WriteLine(D);
 		}
 	}
 }

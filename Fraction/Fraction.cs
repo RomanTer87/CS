@@ -65,6 +65,16 @@ namespace Fraction
 			this.Denominator= other.Denominator;
 			Console.WriteLine($"CopyConstructor:\t{this.GetHashCode()}");
 		}
+
+		public Fraction(double value)
+		{
+			Fraction res = new Fraction();
+			Integer = (int)value;
+			double dop = ((double)value - (int)value) * 100;
+			Numerator = (int)dop;
+			Denominator = 100;
+			Inverted();
+		}
 		//// OPERATORS////////////////
 		public static Fraction operator *(Fraction left, Fraction right)
 		{
